@@ -1,7 +1,7 @@
 # Tech Challenge: ECS com Terraform 
 
 Este repositório faz parte da entrega do tech challenge - fase 3:
-- 1 repositório para sua infra kubernetes com ECS
+- 1 repositório para sua infra ECS com Terraform
 
 # Pré-requisitos
 
