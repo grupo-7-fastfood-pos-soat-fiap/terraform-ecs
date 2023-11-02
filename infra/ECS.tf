@@ -18,8 +18,8 @@ module "ecs" {
 }
 
 # Tasks: colocam a apliacao nas instâncias que vão ser gerenciadas pelo Fargate, dentro desse Clusters.
-resource "aws_ecs_task_definition" "Fastfood-API" {
-  family                   = "Fastfood-API"
+resource "aws_ecs_task_definition" "fastfood-api" {
+  family                   = "fastfood-api"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   cpu                      = 256
@@ -29,7 +29,7 @@ resource "aws_ecs_task_definition" "Fastfood-API" {
     [
       {
         "name"      = var.ambiente
-        "image"     = "265391989599.dkr.ecr.us-east-1.amazonaws.com/prod:v1"
+        "image"     = "265391989599.dkr.ecr.us-east-1.amazonaws.com/prod:latest"
         "cpu"       = 256
         "memory"    = 512
         "essential" = true
@@ -46,10 +46,10 @@ resource "aws_ecs_task_definition" "Fastfood-API" {
 
 
 # Service = define qual task deve ser executada dentro de qual cluster.
-resource "aws_ecs_service" "Fastfood-API" {
-  name            = "Fastfood-API"
+resource "aws_ecs_service" "fastfood-api" {
+  name            = "fastfood-api"
   cluster         = module.ecs.cluster_id
-  task_definition = aws_ecs_task_definition.Fastfood-API.arn
+  task_definition = aws_ecs_task_definition.fastfood-api.arn
   desired_count   = 1
 
   load_balancer {

@@ -1,8 +1,8 @@
 module "prod" {
     source = "../../infra"
 
-    nome_repositorio = "producao"
-    cargoIAM = "producao"
+    nome_repositorio = "prod"
+    cargo_IAM = "producao"
     ambiente = "producao"
 }
 

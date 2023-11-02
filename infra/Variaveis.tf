@@ -2,7 +2,7 @@ variable "nome_repositorio" {
   type = string
 }
 
-variable "cargoIAM" {
+variable "cargo_IAM" {
   type = string
 }
 
