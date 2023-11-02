@@ -23,7 +23,7 @@ Vá até a paste a abra a pasta do projeto. Após abrir o projeto abra um termin
 # Decisões tomadas
 
 ### Provider
-Um provedor é uma maneira de se comunicar com alguma ferramenta externa, podendo ser a AWS, o Google, o Kubernetes ou uma API que aceite requisições HTTP. Nesse projeto utilizaremos dos provedores simultaneamente, a AWS, que provê a infraestrutura e o Kubernetes, que a configura para a aplicação.
+Um provedor é uma maneira de se comunicar com alguma ferramenta externa, podendo ser a AWS, o Google, o Kubernetes ou uma API que aceite requisições HTTP. Nesse projeto utilizaremos a AWS, que provê a infraestrutura.
 
 ### Organização de arquivos
 
