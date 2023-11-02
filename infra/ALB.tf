@@ -4,13 +4,13 @@ resource "aws_lb" "alb" {
   subnets            = module.vpc.public_subnets
 }
 
-resource "aws_lb_listener" "http" {
+resource "aws_lb_listener" "http" { #Entrada do ALB
   load_balancer_arn = aws_lb.alb.arn
   port              = "8000"
   protocol          = "HTTP"
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.alvo.arn
+    target_group_arn = aws_lb_target_group.alvo.arn #Encaminha para o grupo alvo (ECS)
   }
 }
 

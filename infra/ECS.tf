@@ -1,3 +1,4 @@
+# cluster do ECS = é o conjunto de máquinas gerenciadas pelo Fargate, onde o código da nossa aplicação vai ser executado.
 module "ecs" {
   source = "terraform-aws-modules/ecs/aws"
 
@@ -5,9 +6,9 @@ module "ecs" {
   
     fargate_capacity_providers = {
         FARGATE = {
-            default_capacity_provider_strategy = {
-            weight = 100
-            }     
+         default_capacity_provider_strategy = {
+         weight = 100
+         }
         }
     }
   cluster_settings = {
@@ -16,6 +17,7 @@ module "ecs" {
   }
 }
 
+# Tasks: colocam a apliacao nas instâncias que vão ser gerenciadas pelo Fargate, dentro desse Clusters.
 resource "aws_ecs_task_definition" "Fastfood-API" {
   family                   = "Fastfood-API"
   requires_compatibilities = ["FARGATE"]
@@ -26,7 +28,7 @@ resource "aws_ecs_task_definition" "Fastfood-API" {
   container_definitions = jsonencode(
     [
       {
-        "name"      = "producao"
+        "name"      = var.ambiente
         "image"     = "265391989599.dkr.ecr.us-east-1.amazonaws.com/prod:v1"
         "cpu"       = 256
         "memory"    = 512
@@ -43,15 +45,16 @@ resource "aws_ecs_task_definition" "Fastfood-API" {
 }
 
 
+# Service = define qual task deve ser executada dentro de qual cluster.
 resource "aws_ecs_service" "Fastfood-API" {
   name            = "Fastfood-API"
   cluster         = module.ecs.cluster_id
   task_definition = aws_ecs_task_definition.Fastfood-API.arn
-  desired_count   = 3
+  desired_count   = 1
 
   load_balancer {
     target_group_arn = aws_lb_target_group.alvo.arn
-    container_name   = "producao"
+    container_name   = var.ambiente
     container_port   = 8000
   }
 

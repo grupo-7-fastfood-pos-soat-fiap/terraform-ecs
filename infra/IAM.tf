@@ -17,6 +17,7 @@ resource "aws_iam_role" "cargo" {
   })
 }
 
+#Permitir que o ECS acesse o ECR
 resource "aws_iam_role_policy" "ecs_ecr" {
   name = "ecs_ecr"
   role = aws_iam_role.cargo.id
@@ -40,6 +41,7 @@ resource "aws_iam_role_policy" "ecs_ecr" {
   })
 }
 
+#Definindo o perfil que irá usar o cargo
 resource "aws_iam_instance_profile" "perfil" {
   name = "${var.cargoIAM}_perfil"
   role = aws_iam_role.cargo.name
