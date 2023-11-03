@@ -1,27 +1,33 @@
-resource "aws_lb" "alb" {
-  name               = "ECS-fastfood"
+resource "aws_lb" "alb2" {
+  name               = "${var.alb_name}"
+  internal           = false
+  load_balancer_type = "application"
   security_groups    = [aws_security_group.alb.id]
-  subnets            = module.vpc.public_subnets
+  subnets            = [aws_subnet.subnet.id, aws_subnet.subnet2.id]
 }
 
-resource "aws_lb_listener" "http" { #Entrada do ALB
-  load_balancer_arn = aws_lb.alb.arn
-  port              = "8000"
+resource "aws_lb_listener" "ecs_alb_listener" { #Entrada do ALB
+  load_balancer_arn = aws_lb.alb2.arn
+  port              = 80
   protocol          = "HTTP"
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.alvo.arn #Encaminha para o grupo alvo (ECS)
+    target_group_arn = aws_lb_target_group.target_group_teste.arn #Encaminha para o grupo target_group_teste (ECS)
   }
 }
 
-resource "aws_lb_target_group" "alvo" {
-  name        = "ECS-fastfood"
-  port        = 8000
+resource "aws_lb_target_group" "target_group_teste" {
+  name        = "${var.tg_name}"
+  port        = 80
   protocol    = "HTTP"
   target_type = "ip"
-  vpc_id      = module.vpc.vpc_id
+  vpc_id      = aws_vpc.main.id
+
+  health_check {
+    path = "/swagger"
+  }
 }
 
 output "IP" {
-  value = aws_lb.alb.dns_name
+  value = aws_lb.alb2.dns_name
 }

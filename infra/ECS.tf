@@ -2,7 +2,7 @@
 module "ecs" {
   source = "terraform-aws-modules/ecs/aws"
 
-  cluster_name               = var.ambiente
+  cluster_name  = var.ambiente
   
     fargate_capacity_providers = {
         FARGATE = {
@@ -18,25 +18,30 @@ module "ecs" {
 }
 
 # Tasks: colocam a apliacao nas instâncias que vão ser gerenciadas pelo Fargate, dentro desse Clusters.
-resource "aws_ecs_task_definition" "fastfood-api" {
-  family                   = "fastfood-api"
+resource "aws_ecs_task_definition" "ecs-task-definition" {
+  family                   = "my-ecs-task-definition"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   cpu                      = 256
   memory                   = 512
-  execution_role_arn       = aws_iam_role.cargo.arn
+  runtime_platform {
+    operating_system_family = "LINUX"
+    cpu_architecture        = "X86_64"
+  }
+  execution_role_arn = "arn:aws:iam::235145177657:role/ecsTaskExecutionRole"
   container_definitions = jsonencode(
     [
       {
-        "name"      = var.ambiente
-        "image"     = "265391989599.dkr.ecr.us-east-1.amazonaws.com/prod:latest"
-        "cpu"       = 256
-        "memory"    = 512
-        "essential" = true
-        "portMappings" = [
+        name     = var.ambiente
+        image    = "235145177657.dkr.ecr.us-east-1.amazonaws.com/fastfood-api:latest"
+        cpu       = 256
+        memory    = 512
+        essential = true
+        portMappings = [
           {
-            "containerPort" = 8000
-            "hostPort"      = 8000
+            containerPort = 80
+            hostPort      = 80
+            protocol        = "tcp"
           }
         ]
       }
@@ -46,25 +51,28 @@ resource "aws_ecs_task_definition" "fastfood-api" {
 
 
 # Service = define qual task deve ser executada dentro de qual cluster.
-resource "aws_ecs_service" "fastfood-api" {
-  name            = "fastfood-api"
+resource "aws_ecs_service" "ecs-svc-3" {
+  name            = "my-ecs-service"
   cluster         = module.ecs.cluster_id
-  task_definition = aws_ecs_task_definition.fastfood-api.arn
-  desired_count   = 1
+  task_definition = aws_ecs_task_definition.ecs-task-definition.arn
+  desired_count   = 2
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.alvo.arn
+    target_group_arn = aws_lb_target_group.target_group_teste.arn
     container_name   = var.ambiente
-    container_port   = 8000
+    container_port   = 80
   }
 
   network_configuration {
-      subnets = module.vpc.private_subnets
-      security_groups = [aws_security_group.privado.id]
+    subnets         = [aws_subnet.subnet.id, aws_subnet.subnet2.id]
+    security_groups = [aws_security_group.alb.id]
+    assign_public_ip = true
   }
 
+  force_new_deployment = true
+
   capacity_provider_strategy {
-      capacity_provider = "FARGATE"
-      weight = 1 #100/100
+    capacity_provider = "FARGATE"
+    weight            = 100
   }
 }
