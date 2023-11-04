@@ -34,13 +34,6 @@ Na nossa região temos um internet-gateway para podermos acessar a internet para
 ### Provider
 Um provedor é uma maneira de se comunicar com alguma ferramenta externa, podendo ser a AWS, o Google, o Kubernetes ou uma API que aceite requisições HTTP. Nesse projeto utilizaremos a AWS, que provê a infraestrutura.
 
-### Arquivo de estado
-Sempre que executamos o Terraform, acabamos criando um arquivo de estado, que guarda todo o estado da  infraestrutura para podermos comparar qual estado que queremos que a infraestrutura tenha com qual ela realmente tem, para podermos criar o que está faltando nela. E para podermos executar o Terraform em qualquer máquina, é interessante guardarmos esse arquivo em um local que possa ser facilmente acessado.
-
-Nesse projeto, estamos amarzenando esse arquivo no S3 da AWS, assim, ele fica disponível para a conta usada pelo grupo e não vamos perdê-lo caso troquemos de máquina, por exemplo. Também é muito interessante fazermos isso, porque, como a maioria das rotinas de entrega contínua é executada dentro de containers docker, elas não salvam nenhum tipo de arquivo local, então salvar o estado em um serviço de cloud é benéfico.
-
-A definição desse arquivo está no arquivo backend.tf dentro do diretório de cada ambiente.
-
 ### IAM
 Obtamos por configurar os recursos do IAM, como o cargo e as politicas da aplicação, para previnir se acontecer alguma coisa com a aplicação e alguém conseguir um acesso indevido na nossa conta, através dessa aplicação, essa pessoa não vai conseguir acessar informações sensíveis, como senhas, bancos de dados de outras aplicações, chaves de acesso ou mesmo criar outros recursos na AWS.
 
