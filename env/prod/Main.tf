@@ -10,12 +10,12 @@ output "IP_alb" {
 }
 
 terraform {
- backend "remote" {
-    organization = "fiap-postech-groupo7"
-    hostname = "app.terraform.io"
+    backend "remote" {
+        organization = "fiap-postech-groupo7"
+        hostname = "app.terraform.io"
 
- workspaces {
-      prefix = "terraform-actions"
+         workspaces {
+          prefix = "terraform-actions"
+        }
     }
-}
 }
