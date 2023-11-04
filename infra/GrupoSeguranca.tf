@@ -1,12 +1,12 @@
 resource "aws_security_group" "alb" { #rede publica
-  name        = "alb_ECS"
-  vpc_id      = module.vpc.vpc_id
+  name        = "ecs-security-group"
+  vpc_id      = aws_vpc.main.id
 }
 
 resource "aws_security_group_rule" "tcp_alb" { 
   type              = "ingress"
-  from_port         = 8000
-  to_port           = 8000
+  from_port         = 80
+  to_port           = 80
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"] #Recebe de qualquer lugar
   security_group_id = aws_security_group.alb.id
@@ -23,7 +23,7 @@ resource "aws_security_group_rule" "saida_alb" {
 
 resource "aws_security_group" "privado" {
   name        = "privado_ECS"
-  vpc_id      = module.vpc.vpc_id
+  vpc_id      = aws_vpc.main.id
 }
 
 resource "aws_security_group_rule" "entrada_ECS" {
