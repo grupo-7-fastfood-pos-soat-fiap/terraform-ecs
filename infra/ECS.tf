@@ -58,7 +58,7 @@ resource "aws_ecs_service" "ecs-svc-3" {
   desired_count   = 2
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.target_group_teste.arn
+    target_group_arn = aws_lb_target_group.target_group.arn
     container_name   = var.ambiente
     container_port   = 80
   }
