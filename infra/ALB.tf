@@ -1,4 +1,4 @@
-resource "aws_lb" "alb2" {
+resource "aws_lb" "alb" {
   name               = "${var.alb_name}"
   internal           = false
   load_balancer_type = "application"
@@ -7,16 +7,16 @@ resource "aws_lb" "alb2" {
 }
 
 resource "aws_lb_listener" "ecs_alb_listener" { #Entrada do ALB
-  load_balancer_arn = aws_lb.alb2.arn
+  load_balancer_arn = aws_lb.alb.arn
   port              = 80
   protocol          = "HTTP"
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.target_group_teste.arn #Encaminha para o grupo target_group_teste (ECS)
+    target_group_arn = aws_lb_target_group.target_group.arn #Encaminha para o grupo target_group_teste (ECS)
   }
 }
 
-resource "aws_lb_target_group" "target_group_teste" {
+resource "aws_lb_target_group" "target_group" {
   name        = "${var.tg_name}"
   port        = 80
   protocol    = "HTTP"

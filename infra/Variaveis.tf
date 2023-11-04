@@ -11,9 +11,9 @@ variable "vpc_cidr" {
 }
 
 variable "alb_name" {
-  default = "alb-4"
+  default = "alb"
 }
 
 variable "tg_name" {
-  default = "target-group-4"
+  default = "target-group"
 }

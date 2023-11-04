@@ -1,8 +1,8 @@
 module "prod" {
   source = "../../infra"
 
-  cargo_IAM = "producao"
-  ambiente  = "producao"
+  cargo_IAM = "prod"
+  ambiente  = "prod"
 }
 
 terraform {
