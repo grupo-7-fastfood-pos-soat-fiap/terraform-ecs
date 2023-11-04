@@ -5,10 +5,6 @@ module "prod" {
   ambiente  = "producao"
 }
 
-output "IP_alb" {
-  value = module.prod.IP
-}
-
 terraform {
   backend "remote" {
     organization = "fiap-postech-groupo7"
