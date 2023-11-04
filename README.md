@@ -41,9 +41,7 @@ A definição desse arquivo está no arquivo backend.tf dentro do diretório de 
 ### VPC
 VPC ajuda a separar aplicações com uma camada a mais de isolamento e protege os dados de aplicações, além de permitir uma proteção extra para a aplicação, ao utilizar redes privadas. 
 
-load balance que vamos criar vai ficar na subnet pública para que possa receber as requisições e repassá-las às instâncias que estão na subnet privada.
-
-Na nossa região temos um internet-gateway para podermos acessar a internet para poder receber requisições e responder as requisições. Na zona de disponibilidade e dentro delas temos a rede pública com o load balancer e o NAT-gateway, e a rede privada com as instâncias ECS.
+Na nossa região temos um internet-gateway para podermos acessar a internet para poder receber requisições e responder as requisições. Na zona de disponibilidade e dentro delas temos a rede pública com o load balancer e o NAT-gateway, e a rede privada com as instâncias ECS. O load balance fica dentro da subnet pública para que possa receber as requisições e repassá-las às instâncias que estão na subnet privada.
 
 ### IAM
 Obtamos por configurar os recursos do IAM, como o cargo e as politicas da aplicação, para previnir se acontecer alguma coisa com a aplicação e alguém conseguir um acesso indevido na nossa conta, através dessa aplicação, essa pessoa não vai conseguir acessar informações sensíveis, como senhas, bancos de dados de outras aplicações, chaves de acesso ou mesmo criar outros recursos na AWS.
