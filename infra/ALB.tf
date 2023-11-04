@@ -12,7 +12,7 @@ resource "aws_lb_listener" "ecs_alb_listener" { #Entrada do ALB
   protocol          = "HTTP"
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.target_group.arn #Encaminha para o grupo target_group_teste (ECS)
+    target_group_arn = aws_lb_target_group.target_group.arn #Encaminha para o grupo target_group (ECS)
   }
 }
 
@@ -29,5 +29,5 @@ resource "aws_lb_target_group" "target_group" {
 }
 
 output "IP" {
-  value = aws_lb.alb2.dns_name
+  value = aws_lb.alb.dns_name
 }
