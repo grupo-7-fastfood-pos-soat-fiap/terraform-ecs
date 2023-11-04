@@ -19,7 +19,7 @@ module "ecs" {
 
 # Tasks: colocam a apliacao nas instâncias que vão ser gerenciadas pelo Fargate, dentro desse Clusters.
 resource "aws_ecs_task_definition" "ecs-task-definition" {
-  family                   = "my-ecs-task-definition"
+  family                   = "ecs-task-definition"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   cpu                      = 256
@@ -52,7 +52,7 @@ resource "aws_ecs_task_definition" "ecs-task-definition" {
 
 # Service = define qual task deve ser executada dentro de qual cluster.
 resource "aws_ecs_service" "ecs-svc-3" {
-  name            = "my-ecs-service"
+  name            = "ecs-service"
   cluster         = module.ecs.cluster_id
   task_definition = aws_ecs_task_definition.ecs-task-definition.arn
   desired_count   = 2
