@@ -51,8 +51,8 @@ resource "aws_ecs_task_definition" "ecs-task-definition" {
 
 
 # Service = define qual task deve ser executada dentro de qual cluster.
-resource "aws_ecs_service" "ecs-svc-3" {
-  name            = "ecs-service"
+resource "aws_ecs_service" "ecs-svc-4" {
+  name            = "ecs-service-4"
   cluster         = module.ecs.cluster_id
   task_definition = aws_ecs_task_definition.ecs-task-definition.arn
   desired_count   = 2

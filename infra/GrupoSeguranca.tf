@@ -22,7 +22,7 @@ resource "aws_security_group_rule" "saida_alb" {
 }
 
 resource "aws_security_group" "privado" {
-  name        = "privado_ECS"
+  name        = "security-group-teste"
   vpc_id      = aws_vpc.main.id
 }
 
