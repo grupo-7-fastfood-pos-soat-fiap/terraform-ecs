@@ -12,7 +12,7 @@ resource "aws_lb_listener" "ecs_application_load_balancer_listener" { #Entrada d
   protocol          = "HTTP"
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.target_group.arn #Encaminha para o grupo target_group (ECS)
+    target_group_arn = aws_lb_target_group.application_load_balancer_target_group.arn #Encaminha para o grupo target_group (ECS)
   }
 }
 
