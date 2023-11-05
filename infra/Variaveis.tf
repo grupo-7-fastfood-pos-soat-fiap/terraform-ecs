@@ -15,7 +15,7 @@ variable "alb_name" {
 }
 
 variable "tg_name" {
-  default = "application-load-balancer-target-group"
+  default = "application-lb-target-group"
 }
 
 # rds
