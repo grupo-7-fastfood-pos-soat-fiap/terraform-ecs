@@ -58,14 +58,14 @@ resource "aws_ecs_service" "ecs-service" {
   desired_count   = 2
 
   load_balancer {
-    target_group_arn = aws_alb_target_group.application_load_balancer_target_group.arn
+    target_group_arn = aws_lb_target_group.application_load_balancer_target_group.arn
     container_name   = var.ambiente
     container_port   = 80
   }
 
   network_configuration {
     subnets         = [aws_subnet.subnet.id, aws_subnet.subnet2.id]
-    security_groups = [aws_security_group.aplication_load_balancer.id]
+    security_groups = [aws_security_group.application_load_balancer.id]
     assign_public_ip = true
   }
 

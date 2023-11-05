@@ -2,7 +2,7 @@ resource "aws_lb" "application_load_balancer" {
   name               = "${var.alb_name}"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.lb.id]
+  security_groups    = [aws_security_group.application_load_balancer.id]
   subnets            = [aws_subnet.subnet.id, aws_subnet.subnet2.id]
 }
 
@@ -29,5 +29,5 @@ resource "aws_lb_target_group" "application_load_balancer_target_group" {
 }
 
 output "IP" {
-  value = aws_lb.lb.dns_name
+  value = aws_lb.application_load_balancer.dns_name
 }
