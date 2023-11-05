@@ -48,13 +48,13 @@ resource "aws_apigatewayv2_integration" "example_alb_integration" {
   }
 }
 
-resource "aws_apitgatewayv2_stage" "example" {
+resource "aws_apigatewayv2_stage" "example" {
   api_id = aws_apigatewayv2_api.example.id
-  stage_name = "$default"
+  name = "$default"
   auto_deploy = true
 }
 
-resource "aws_apigatewayv2_router" "any_route" {
+resource "aws_apigatewayv2_route" "any_route" {
   api_id = aws_apigatewayv2_api.example.id
   route_key = "$default"
 }
