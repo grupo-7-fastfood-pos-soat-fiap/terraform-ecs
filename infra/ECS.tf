@@ -51,7 +51,7 @@ resource "aws_ecs_task_definition" "ecs-task-definition" {
 
 
 # Service = define qual task deve ser executada dentro de qual cluster.
-resource "aws_ecs_service" "ecs-svc-3" {
+resource "aws_ecs_service" "ecs-svc" {
   name            = "ecs-service"
   cluster         = module.ecs.cluster_id
   task_definition = aws_ecs_task_definition.ecs-task-definition.arn
@@ -65,7 +65,7 @@ resource "aws_ecs_service" "ecs-svc-3" {
 
   network_configuration {
     subnets         = [aws_subnet.subnet.id, aws_subnet.subnet2.id]
-    security_groups = [aws_security_group.load_balancer.id]
+    security_groups = [aws_security_group.lb.id]
     assign_public_ip = true
   }
 

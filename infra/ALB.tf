@@ -1,13 +1,13 @@
-resource "aws_lb" "load_balancer" {
+resource "aws_lb" "lb" {
   name               = "${var.alb_name}"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.load_balancer.id]
+  security_groups    = [aws_security_group.lb.id]
   subnets            = [aws_subnet.subnet.id, aws_subnet.subnet2.id]
 }
 
 resource "aws_lb_listener" "ecs_alb_listener" { #Entrada do ALB
-  load_balancer_arn = aws_lb.load_balancer.arn
+  load_balancer_arn = aws_lb.lb.arn
   port              = 80
   protocol          = "HTTP"
   default_action {
@@ -29,5 +29,5 @@ resource "aws_lb_target_group" "target_group" {
 }
 
 output "IP" {
-  value = aws_lb.load_balancer.dns_name
+  value = aws_lb.lb.dns_name
 }
