@@ -1,5 +1,5 @@
 resource "aws_security_group" "load_balancer" { #rede publica
-  name   = "ecs-security-group"
+  name   = "lb-security-group"
   vpc_id = aws_vpc.main.id
 }
 
