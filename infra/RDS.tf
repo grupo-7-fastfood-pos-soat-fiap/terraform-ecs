@@ -26,7 +26,7 @@ resource "aws_db_instance" "production" {
 resource "null_resource" "db_setup" {
   provisioner "local-exec" {
 
-    command = "psql -h host_name_here -p 5432 -U \"${var.rds_username}\" -d ${var.rds_db_name} -f \"../infra/script/db-init.sql\""
+    command = "psql -h host_name_here -p 5432 -U \"${var.rds_username}\" -d ${var.rds_db_name} -f \"db-init.sql\""
 
     environment = {
       PGPASSWORD = "${var.rds_password}"
