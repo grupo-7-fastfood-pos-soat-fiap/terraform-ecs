@@ -11,11 +11,11 @@ variable "vpc_cidr" {
 }
 
 variable "alb_name" {
-  default = "alb"
+  default = "application_load_balancer"
 }
 
 variable "tg_name" {
-  default = "tg"
+  default = "application_load_balancer_target_group"
 }
 
 # rds
