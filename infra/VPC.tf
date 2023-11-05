@@ -28,7 +28,6 @@ resource "aws_internet_gateway" "internet_gateway" {
 }
 
 // route table below enable internet communication of both the subnets above
-
 resource "aws_route_table" "route_table" {
  vpc_id = aws_vpc.main.id
  route {
