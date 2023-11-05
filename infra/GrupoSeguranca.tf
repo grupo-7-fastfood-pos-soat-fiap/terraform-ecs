@@ -44,21 +44,20 @@ resource "aws_security_group_rule" "saida_ECS" {
   security_group_id = aws_security_group.privado.id
 }
 
-# RDS Security Group (traffic ECS -> RDS)
-resource "aws_security_group" "rds" {
-  name        = "rds-security-group"
-  description = "Allows inbound access from ECS only"
+resource "aws_security_group" "postgres" {
+  name        = "postgres-security-group"
+  description = "Security group for Postgres database"
   vpc_id      = aws_vpc.main.id
-
+ 
   ingress {
-    protocol        = "tcp"
-    from_port       = "5432"
-    to_port         = "5432"
-    security_groups = [aws_security_group.alb.id]
+    protocol    = "tcp"
+    from_port   = 5432
+    to_port     = 5432
+    cidr_blocks = ["0.0.0.0/0"]
   }
-
+ 
   egress {
-    protocol    = "-1"
+    protocol    = -1
     from_port   = 0
     to_port     = 0
     cidr_blocks = ["0.0.0.0/0"]
