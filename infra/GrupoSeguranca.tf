@@ -1,5 +1,5 @@
-resource "aws_security_group" "lb" { #rede publica
-  name   = "new-lb-security-group"
+resource "aws_security_group" "application_load_balancer" { #rede publica
+  name   = "application-load-balancer-security-group"
   vpc_id = aws_vpc.main.id
 }
 
@@ -9,7 +9,7 @@ resource "aws_security_group_rule" "tcp_alb" {
   to_port           = 80
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"] #Recebe de qualquer lugar
-  security_group_id = aws_security_group.lb.id
+  security_group_id = aws_security_group.application_load_balancer.id
 }
 
 resource "aws_security_group_rule" "saida_alb" {
@@ -18,7 +18,7 @@ resource "aws_security_group_rule" "saida_alb" {
   to_port           = 0
   protocol          = "-1"          #qlqr protocolo
   cidr_blocks       = ["0.0.0.0/0"] #0.0.0.0 - 255.255.255.255
-  security_group_id = aws_security_group.lb.id
+  security_group_id = aws_security_group.application_load_balancer.id
 }
 
 resource "aws_security_group" "privado" {
@@ -31,7 +31,7 @@ resource "aws_security_group_rule" "entrada_ECS" {
   from_port                = 0
   to_port                  = 0
   protocol                 = "-1"
-  source_security_group_id = aws_security_group.lb.id # recebe requisicoes apenas da rede publica (do application load balancer)
+  source_security_group_id = aws_security_group.application_load_balancer.id # recebe requisicoes apenas da rede publica (do application load balancer)
   security_group_id        = aws_security_group.privado.id
 }
 

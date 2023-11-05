@@ -51,21 +51,21 @@ resource "aws_ecs_task_definition" "ecs-task-definition" {
 
 
 # Service = define qual task deve ser executada dentro de qual cluster.
-resource "aws_ecs_service" "ecs-svc" {
+resource "aws_ecs_service" "ecs-service" {
   name            = "ecs-service"
   cluster         = module.ecs.cluster_id
   task_definition = aws_ecs_task_definition.ecs-task-definition.arn
   desired_count   = 2
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.target_group.arn
+    target_group_arn = aws_lb_target_group.application_load_balancer_target_group.arn
     container_name   = var.ambiente
     container_port   = 80
   }
 
   network_configuration {
     subnets         = [aws_subnet.subnet.id, aws_subnet.subnet2.id]
-    security_groups = [aws_security_group.lb.id]
+    security_groups = [aws_security_group.application_load_balancer.id]
     assign_public_ip = true
   }
 
@@ -76,13 +76,3 @@ resource "aws_ecs_service" "ecs-svc" {
     weight            = 100
   }
 }
-
-# resource "null_resource" "db_setup" {
-#   provisioner "local-exec" {
-
-#     command = "psql -h ${var.rds_db_name} -p 5432 -U \"${var.rds_username}\" -d ${var.rds_db_name} -f \"db-init.sql\""
-
-#     environment = {
-#       PGPASSWORD = "${var.rds_password}"
-#     }
-#   }
