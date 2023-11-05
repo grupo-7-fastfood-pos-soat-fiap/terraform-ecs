@@ -3,7 +3,6 @@ module "prod" {
 
   cargo_IAM    = "prod"
   ambiente     = "prod"
-  rds_db_name  = "postgres"
   rds_username = "postgres"
   rds_password = "#F1apFastF00d"
 }
