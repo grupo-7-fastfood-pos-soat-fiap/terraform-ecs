@@ -1,9 +1,9 @@
 module "prod" {
   source = "../../infra"
 
-  cargo_IAM = "prod"
-  ambiente  = "prod"
-  rds_db_name = "db_name"
+  cargo_IAM    = "prod"
+  ambiente     = "prod"
+  rds_db_name  = "db_name"
   rds_username = "username"
   rds_password = "password"
 }
