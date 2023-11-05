@@ -1,5 +1,5 @@
 resource "aws_security_group" "lb" { #rede publica
-  name   = "lb-security-group"
+  name   = "new-lb-security-group"
   vpc_id = aws_vpc.main.id
 }
 
