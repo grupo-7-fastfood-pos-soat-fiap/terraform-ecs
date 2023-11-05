@@ -15,7 +15,7 @@ variable "alb_name" {
 }
 
 variable "tg_name" {
-  default = "target-group"
+  default = "tg"
 }
 
 # rds
