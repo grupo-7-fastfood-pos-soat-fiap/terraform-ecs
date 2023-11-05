@@ -65,7 +65,7 @@ resource "aws_ecs_service" "ecs-svc-3" {
 
   network_configuration {
     subnets         = [aws_subnet.subnet.id, aws_subnet.subnet2.id]
-    security_groups = [aws_security_group.alb.id]
+    security_groups = [aws_security_group.load_balancer.id]
     assign_public_ip = true
   }
 
@@ -76,3 +76,13 @@ resource "aws_ecs_service" "ecs-svc-3" {
     weight            = 100
   }
 }
+
+# resource "null_resource" "db_setup" {
+#   provisioner "local-exec" {
+
+#     command = "psql -h ${var.rds_db_name} -p 5432 -U \"${var.rds_username}\" -d ${var.rds_db_name} -f \"db-init.sql\""
+
+#     environment = {
+#       PGPASSWORD = "${var.rds_password}"
+#     }
+#   }
