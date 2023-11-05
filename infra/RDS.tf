@@ -22,10 +22,3 @@ resource "aws_db_instance" "production" {
   backup_retention_period = 7
   skip_final_snapshot     = true
 }
-
-resource "null_resource" "setup_db" {
-  depends_on = ["aws_db_instance.production"] #wait for the db to be ready
-  provisioner "local-exec" {
-    command = "mysql -u ${aws_db_instance.production.username} -p${var.aws_db_instance.production.password} -h ${aws_db_instance.production.address} < file.sql"
-  }
-}
