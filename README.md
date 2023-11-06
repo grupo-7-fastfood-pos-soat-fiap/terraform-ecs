@@ -40,4 +40,3 @@ Criação de maquinas de forma automática pelo ECS (Elastic Container Service) 
 
 ### Elastic Constainer Registry
 O repositório de containers da AWS, onde as images são armazenadas.
-
