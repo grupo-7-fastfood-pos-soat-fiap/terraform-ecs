@@ -27,8 +27,6 @@ Subimos a infa por ambientes em vez de subir dentro da pasta infra porque assim 
 # Representação da Infraestrutura
 ![Infra](/docs/img/infra1.png)
 
-Na nossa região temos um internet-gateway para podermos acessar a internet para poder receber requisições e responder as requisições. Na zona de disponibilidade e dentro delas temos a rede pública com o load balancer e o NAT-gateway, e a rede privada com as instâncias ECS. O load balance fica dentro da subnet pública para que possa receber as requisições e repassá-las às instâncias que estão na subnet privada.
-
 # Técnicas e tecnologias utilizadas
 
 ### Provider
