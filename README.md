@@ -25,9 +25,7 @@ Para os ambientes, ou "environments", utilizaremos a pasta "env". Para infraestr
 Subimos a infa por ambientes em vez de subir dentro da pasta infra porque assim não precisamos forncer todos os valores das variáveis que declaramos e ao executar o terraform destruct podemos ter um problema com a destruição de coisas não planejadas ou acabamos não tendo a destruição de toda a infra que criamos.
 
 # Representação da Infraestrutura
-![Infra](/docs/img/infra.png)
-
-Na nossa região temos um internet-gateway para podermos acessar a internet para poder receber requisições e responder as requisições. Na zona de disponibilidade e dentro delas temos a rede pública com o load balancer e o NAT-gateway, e a rede privada com as instâncias ECS. O load balance fica dentro da subnet pública para que possa receber as requisições e repassá-las às instâncias que estão na subnet privada.
+![Infra](/docs/img/infra1.png)
 
 # Técnicas e tecnologias utilizadas
 
