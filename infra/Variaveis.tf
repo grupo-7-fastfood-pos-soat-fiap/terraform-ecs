@@ -11,7 +11,7 @@ variable "vpc_cidr" {
 }
 
 variable "alb_name" {
-  default = "application-load-balancer"
+  default = "fastfood-api"
 }
 
 variable "tg_name" {
