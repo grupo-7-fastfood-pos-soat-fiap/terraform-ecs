@@ -7,7 +7,7 @@ env:
 #  CONFIG_DIRECTORY: "./env/prod"
 
 on:
-  push:
+  pull_request:
     branches: [ "main" ]
   pull_request:
 
