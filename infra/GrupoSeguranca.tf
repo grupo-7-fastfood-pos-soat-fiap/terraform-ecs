@@ -44,22 +44,12 @@ resource "aws_security_group_rule" "saida_ECS" {
   security_group_id = aws_security_group.privado.id
 }
 
-# resource "aws_security_group" "postgres" {
-#   name        = "postgres-security-group"
-#   description = "Security group for Postgres database"
-#   vpc_id      = aws_vpc.main.id
-
-#   ingress {
-#     protocol    = "tcp"
-#     from_port   = 5432
-#     to_port     = 5432
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-
-#   egress {
-#     protocol    = -1
-#     from_port   = 0
-#     to_port     = 0
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-# }
+resource "aws_security_group_rule" "postgres_saida" {
+  description = "Postgres Egress"
+  type              = "egress"
+  from_port         = 5432
+  to_port           = 5432
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"] #0.0.0.0 - 255.255.255.255
+  security_group_id = aws_security_group.privado.id
+}
