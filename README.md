@@ -10,17 +10,19 @@ https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
 ### AWS CLI: 
 https://docs.aws.amazon.com/pt_br/cli/latest/userguide/getting-started-install.html. 
 
-Depois de instalado você pode configurar a AWS usando o comando aws configure, onde será requisitado a chave secreta (secret key), que pode ser criada nessa pagina (https://us-east-1.console.aws.amazon.com/iam/home?region=us-east-1#/security_credentials) clicando em “criar chave de acesso” na aba “credenciais do AWS IAM”.
+Depois de instalado, configure AWS usando o comando `aws configure`, onde será requisitado a chave secreta (secret key), que pode ser criada nessa pagina (https://us-east-1.console.aws.amazon.com/iam/home?region=us-east-1#/security_credentials) clicando em “criar chave de acesso” na aba “credenciais do AWS IAM”.
 
 #  Abrir e rodar o projeto
-O projeto foi desenvolvido no VSC (Visual Studio Code), sendo assim, instale o VSC (pode ser uma versão mais recente) e, na tela inicial, procure a opção extensões, ou aperte Ctrl+Shift+X, e busque por HashiCorp Terraform, assim teremos o suporte do intellisense, tornando o trabalho de escrever o código mais rápido.
+O projeto foi desenvolvido no VSC (Visual Studio Code), sendo assim, instale o VSC e, na tela inicial, procure a opção extensões, ou aperte Ctrl+Shift+X, e busque por HashiCorp Terraform, assim teremos o suporte do intellisense, tornando o trabalho de escrever o código mais rápido.
 
-Vá até a paste a abra a pasta do projeto. Após abrir o projeto abra um terminal, pode ser o integrado com o VSC, navegue até a pasta env/Prod e execute o comando `terraform init` dentro dela, agora temos o Terraform iniciado e podemos começar a utilizá-lo. Para criar a infraestrutura, execute o `terraform apply` na pastas de Produção (env/Prod).
+Vá até a paste a abra a pasta do projeto. Após abrir o projeto abra um terminal, pode ser o integrado com o VSC, navegue até a pasta `env/Prod` e execute o comando `terraform init` dentro dela, agora temos o Terraform iniciado e podemos começar a utilizá-lo. 
+
+Para criar a infraestrutura, execute o `terraform apply` na pastas de Produção (env/Prod).
 
 
 # Organização de arquivos
 
-Para os ambientes, ou "environments", utilizaremos a pasta "env". Para infraestrutura, utilizaremos a pasta "infra". Assim, manteremos os arquivos separados reutilizando a infraestrutura independentemente do ambiente.
+Para os ambientes, ou "environments", utilizamos a pasta "env". Para infraestrutura, utilizaremos a pasta "infra". Assim, manteremos os arquivos separados reutilizando a infraestrutura independentemente do ambiente.
 
 Subimos a infa por ambientes em vez de subir dentro da pasta infra porque assim não precisamos forncer todos os valores das variáveis que declaramos e ao executar o terraform destruct podemos ter um problema com a destruição de coisas não planejadas ou acabamos não tendo a destruição de toda a infra que criamos.
 
