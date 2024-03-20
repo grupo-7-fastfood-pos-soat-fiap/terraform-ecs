@@ -3,8 +3,6 @@ module "prod" {
 
   cargo_IAM    = "prod"
   ambiente     = "prod"
-  rds_username = "postgres"
-  rds_password = "#F1apFastF00d"
 }
 
 terraform {
@@ -13,7 +11,7 @@ terraform {
     hostname     = "app.terraform.io"
 
     workspaces {
-      prefix = "terraform-actions"
+      prefix = "terraform-actionshackathon"
     }
   }
 }

@@ -31,7 +31,10 @@ resource "aws_iam_role_policy" "ecs_ecr" {
           "ecr:GetDownloadUrlForLayer",
           "ecr:BatchGetImage",
           "logs:CreateLogStream",
-          "logs:PutLogEvents"
+          "logs:PutLogEvents",
+          "ecs:RegisterTaskDefinition",
+          "ecs:ListTaskDefinitions",
+          "ecs:DescribeTaskDefinition"
         ]
         Effect   = "Allow"
         Resource = "*"

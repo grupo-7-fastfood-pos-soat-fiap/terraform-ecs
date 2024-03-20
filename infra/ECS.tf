@@ -28,12 +28,12 @@ resource "aws_ecs_task_definition" "ecs-task-definition" {
     operating_system_family = "LINUX"
     cpu_architecture        = "X86_64"
   }
-  execution_role_arn = "arn:aws:iam::235145177657:role/ecsTaskExecutionRole"
+  execution_role_arn = "arn:aws:iam::265391989599:role/ecsTaskExecutionRole"
   container_definitions = jsonencode(
     [
       {
         name     = var.ambiente
-        image    = "235145177657.dkr.ecr.us-east-1.amazonaws.com/fastfood-api:latest"
+        image    = "265391989599.dkr.ecr.us-east-1.amazonaws.com/test:latest"
         cpu       = 256
         memory    = 512
         essential = true
