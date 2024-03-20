@@ -1,7 +1,4 @@
-# Tech Challenge: Infra com Terraform 
-
-Este repositório faz parte da entrega do tech challenge - fase 3:
-Contendo a infra ECS e do banco de dados com Terraform.
+# Postech: Infra com Terraform 
 
 # Pré-requisitos
 
