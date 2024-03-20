@@ -11,7 +11,7 @@ terraform {
     hostname     = "app.terraform.io"
 
     workspaces {
-      prefix = "terraform-actionshackathon"
+      prefix = "hackathon"
     }
   }
 }
