@@ -1,10 +1,8 @@
 module "prod" {
-  source = "../../infra"
+  source = "./infra"
 
-  cargo_IAM    = "prod"
-  ambiente     = "prod"
-  rds_username = "postgres"
-  rds_password = "#F1apFastF00d"
+  cargo_IAM = "prod"
+  ambiente  = "prod"
 }
 
 terraform {
@@ -13,7 +11,7 @@ terraform {
     hostname     = "app.terraform.io"
 
     workspaces {
-      prefix = "terraform-actions"
+      prefix = "hackathon"
     }
   }
 }

@@ -11,18 +11,9 @@ variable "vpc_cidr" {
 }
 
 variable "alb_name" {
-  default = "fastfood-api"
+  default = "hackathon"
 }
 
 variable "tg_name" {
   default = "application-lb-target-group"
-}
-
-# rds
-variable "rds_username" {
-  description = "RDS database username"
-  default     = "foo"
-}
-variable "rds_password" {
-  description = "RDS database password"
 }
