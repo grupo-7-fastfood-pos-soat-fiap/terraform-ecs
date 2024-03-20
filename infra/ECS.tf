@@ -33,7 +33,7 @@ resource "aws_ecs_task_definition" "ecs-task-definition" {
     [
       {
         name     = var.ambiente
-        image    = "265391989599.dkr.ecr.us-east-1.amazonaws.com/test:latest"
+        image    = "265391989599.dkr.ecr.us-east-1.amazonaws.com/hackathon:latest"
         cpu       = 256
         memory    = 512
         essential = true
