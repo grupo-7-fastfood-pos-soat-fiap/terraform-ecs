@@ -1,5 +1,5 @@
 module "prod" {
-  source = "../../infra/"
+  source = "../infra/"
 
   cargo_IAM = "prod"
   ambiente  = "prod"
