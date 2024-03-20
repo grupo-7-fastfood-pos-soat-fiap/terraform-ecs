@@ -3,7 +3,7 @@ name: 'Terraform'
 env:
   TF_CLOUD_ORGANIZATION: "fiap-postech-groupo7"
   TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
-  TF_WORKSPACE: "terraform-actions"
+  TF_WORKSPACE: "terraform-actionshackathon"
 #  CONFIG_DIRECTORY: "./env/prod"
 
 on:
