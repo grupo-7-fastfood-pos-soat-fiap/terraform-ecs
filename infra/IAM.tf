@@ -34,7 +34,8 @@ resource "aws_iam_role_policy" "ecs_ecr" {
           "logs:PutLogEvents",
           "ecs:RegisterTaskDefinition",
           "ecs:ListTaskDefinitions",
-          "ecs:DescribeTaskDefinition"
+          "ecs:DescribeTaskDefinition",
+          "ecsTaskExecutionRole"
         ]
         Effect   = "Allow"
         Resource = "*"
