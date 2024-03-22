@@ -28,7 +28,7 @@ resource "aws_ecs_task_definition" "ecs-task-definition" {
     operating_system_family = "LINUX"
     cpu_architecture        = "X86_64"
   }
-  execution_role_arn = "arn:aws:iam::265391989599:role/ecsTaskExecutionRole"
+  execution_role_arn = "arn:aws:iam::265391989599:role/prod_cargo"
   container_definitions = jsonencode(
     [
       {
